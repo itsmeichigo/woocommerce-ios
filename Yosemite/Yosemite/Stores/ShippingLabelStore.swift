@@ -135,12 +135,12 @@ private extension ShippingLabelStore {
             guard let self = self else { return }
 
             switch result {
-            case .failure(let error):
-                completion(.failure(error))
             case .success(let settings):
                 self.upsertShippingLabelAccountSettingsInBackground(siteID: siteID, accountSettings: settings) {
                     completion(.success(settings))
                 }
+            case .failure(let error):
+                completion(.failure(error))
             }
         }
     }
